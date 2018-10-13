@@ -1,0 +1,22 @@
+{% extends "basic_app/base.html" %}
+{% block body_block %}
+
+{% if add_pressed %}
+
+    <form method='POST'>
+        {% csrf_token %}
+        {{player_form.as_p}}
+        <input type="Submit" name="register_new_member" value="Register">
+    </form>
+{% else %}
+<ul>
+    {% for member in team_members %}
+     <li>{{ member }}</li>
+    {% endfor %}
+</ul>
+    <form method='POST'>
+        {% csrf_token %}
+        <input type="Submit" name="add_submitted" value="ADD">
+    </form>
+{% endif %} 
+{% endblock %}
